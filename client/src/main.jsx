@@ -17,6 +17,7 @@ $(document).ready(function(){
 	var Messaging = require('./components/messagingUsers.react.jsx');
 	var Message = require('./components/messaging.react.jsx');
 	var PostItem = require('./components/postPage.react.jsx');
+	var Login = require('./components/login.react.jsx');
 
 
 
@@ -67,6 +68,7 @@ $(document).ready(function(){
 	  		<Route name="messageUser" path="/messages/user/:userId" handler={Message}/>
 	  	</Route>
 	  	<Route name="postItem" path="/post" handler={PostItem}/>
+	  	<Route name="login" path="/login" handler={Login}/>
 	  </Route>
 	);
 
