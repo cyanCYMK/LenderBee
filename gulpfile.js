@@ -31,9 +31,9 @@ var path = {
     ALL: [__dirname + '/client/src/*.js', __dirname + '/client/src/**/*.js', __dirname + '/client/css/*.css', __dirname + '/client/index.html', __dirname + '/client/login.html']
   },
   dest: {
-    OUT: 'lenderbee.js',
+    OUT: 'LenderBee.js',
     MINIFIED_OUT: 'lenderbee.min.js',
-    DEST_SRC: 'client/dist',
+    DEST_SRC: 'client/dist/src',
     DEST_BUILD: 'client/dist/build',
     DEST: 'client/dist'
   },
@@ -169,15 +169,24 @@ gulp.task('production', ['javascript'], function() {
 
 gulp.task('testProduction', ['production'], function() {
   gulp.start('test');
-})
+});
 
-gulp.task('watch', function() {
+gulp.task('watch', ['copy', 'css'], function() {
   gulp.start('rebuild');
-})
+});
+
+gulp.task('build', ['production'], function() {
+  gulp.start('watch');
+});
+
 
 
 // Makes sure nodemon is run after build
-gulp.task('server', ['watch'], function() {
+gulp.task('buildWatch', ['rebuild'], function() {
+  gulp.start('watch');
+});
+
+gulp.task('server', ['buildWatch'], function() {
   gulp.start('nodemon');
 });
 
